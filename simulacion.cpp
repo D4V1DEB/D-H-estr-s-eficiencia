@@ -17,10 +17,8 @@ long long power(long long base, long long exponent, long long mod) {
 	return res;
 }
 
-// Generar un número primo aleatorio
 long long generate_prime() {
-	// Aquí puedes implementar un algoritmo para generar números primos aleatorios
-	// Por simplicidad, devolveremos un número primo fijo
+	// Por simplicidad, devolveremos un nÃºmero primo fijo
 	return 104729;
 }
 
@@ -28,18 +26,18 @@ long long generate_prime() {
 long long generate_private_key() {
 	random_device rd;
 	mt19937 gen(rd());
-	uniform_int_distribution<> dis(1, 100000);
+	uniform_int_distribution<> dis(1, 1000000);
 	return dis(gen);
 }
 
 int main() {
-	long long p = generate_prime(); // número primo
-	long long g = 3;  // número primitivo
+	long long p = generate_prime(); // nÃºmero primo
+	long long g = 3;  // nÃºmero primitivo
 	
 	long long j = generate_private_key();  // clave privada de Jilmar
 	long long d = generate_private_key(); // clave privada de David
 	
-	// Jilmar y David calculan sus claves públicas
+	// Jilmar y David calculan sus claves pÃºblicas
 	long long A = power(g, j, p);
 	long long B = power(g, d, p);
 	
@@ -47,7 +45,7 @@ int main() {
 	auto start = chrono::high_resolution_clock::now();
 	
 	// Repeticiones
-	int num_reps = 3000000;
+	int num_reps = 30000000;
 	
 	for (int i = 0; i < num_reps; i++) {
 		// Jilmar y David - clave compartida
@@ -55,11 +53,11 @@ int main() {
 		long long keyB = power(A, d, p);
 	}
 	
-	// Fin cronómetro
+	// Fin cronÃ³metro
 	auto stop = chrono::high_resolution_clock::now();
 	auto duration = chrono::duration_cast<chrono::microseconds>(stop - start);
 	
-	cout<< "Tiempo de ejecución : " << duration.count() << " microsegundos" << endl;
+	cout<< "Tiempo de ejecuciÃ³n : " << duration.count() << " microsegundos" << endl;
 	
 	return 0;
 }
